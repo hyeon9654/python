@@ -41,13 +41,3 @@ raw_input = input( "inch 입력: " )  # 1. 입력받아 변수에 저장
 inch = int( raw_input )            # 2. 연산 전에 str -> int 변환
 cm = inch * 2.54                    # 3. 연산
 print( cm )                         # 4. 출력
-
-# p.135 , "문자열".format( 값 )
-string_a = "age:{}".format(10)
-print(string_a)     # age:10
-string_b = "{} {} {}".format(1,"안녕",True)
-print(string_b)
-# 주의할점: {}개수와 값의 개수는 일치 해야한다.
-
-
-
