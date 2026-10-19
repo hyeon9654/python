@@ -4,7 +4,7 @@ print(type(123)) # <class 'int'>
 print(type(1.23)) # <class 'float'>
 print(type(True)) # <class 'bool'>
 print(type(None)) # <class 'NoneType'>
-print(type( [] )) # <class 'List'>
+print(type( [] )) # <class 'list'>
 print(type( {} )) # <class 'dict'>
 print(type( () )) # <class 'tuple'>
 
@@ -44,5 +44,4 @@ print( "안녕하세요"[ :3] )  # 0 ~ 2 # 안녕하
 
 # 5. 문자열의 길이 , len( 문자열 )
 print( len("안녕하세요") ) # 5
-
 
