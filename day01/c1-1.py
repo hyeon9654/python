@@ -1,4 +1,4 @@
-# 85p. 타입 확인하기
+# 85p. 타입 확인하기, type( 자료 )
 print(type("안녕하세요")) # <class 'str'>
 print(type(123)) # <class 'int'>
 print(type(1.23)) # <class 'float'>
