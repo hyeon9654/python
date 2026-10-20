@@ -10,7 +10,7 @@ print( list_a[1:3] )    # 1~2 # [ 32,103 ] # 슬라이싱
 list_a[2] = 7   # 요소 값 수정/변경
 print( list_a[2] )  # 7
 print( list_a[-2] ) # True  # 파이썬에서는 인덱싱 음수로 가능
-print( list_a[3][1] )   # 자    # 문자열도 리스트/배열  # 뮨자 = 리터럴 
+print( list_a[3][1] )   # 자    # 문자열도 리스트/배열  # 문자 = 리터럴 
 # print( list_a[1][1] )   # 오류  # 리터럴/1차원값
 # 고차원 배열 = 판다스/데이터프레임워크
 list_1 = [ 1,2,3 ]  # 1차원
@@ -60,4 +60,25 @@ list_e.sort()
 print( list_e ) # [ 1, 7, 32, 52, 103, 273, 275 ]
 list_e.sort( reverse=True )
 print( list_e ) # [275, 273, 103, 52, 32, 7, 1]
+
+# p.206 내부확인, 찾을값 in 리스트
+print( 52 in list_e )       # True
+print( 51 in list_e )       # False
+print( 52 not in list_e )   # True -> False
+print( 51 not in list_e )   # False -> True
+
+# p.208 리스트와 반복문, 리스트내 요소들이 순차적인 인덱스 구조
+# for 반복변수 in 반복가능한자료 :
+#       실행코드
+for i in list_e :       # vs for( int i = 0 ; i < list_e.size ; i++ ){ }
+    print( i )
+for char in "안녕하세요":   # 문자열도 리스트/배열이다.
+    print( char )
+
+
+# 구구단
+for dan in range(2,10):
+    for num in range(1,10):
+        print(dan,"x",num, "=", dan*num)
+
 
