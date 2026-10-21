@@ -65,6 +65,7 @@ print(numbers)
 # i = 3 , j = 7
 [1,4,3,16,5,36,7,64,9] # numbers[j] = numbers[j]**2 여기 숫자엔 홀수값은 그대로 출력되어 해당 식에 적용되지 않는다.
 
+# 문제풀이
 pets = [
         {"name" : "구름", "age":5},
         {"name" : "초코", "age":3},
@@ -87,6 +88,7 @@ for num in numbers:
 # 최종출력
 print(counter)        
 
+#문제풀이
 character = {
     "name" : "기사",
     "level" : 12,
@@ -106,6 +108,7 @@ for key in character:
     else:
             print(key,":",character[key])
 
+#문제풀이
 k = ["a","b","c","d"]
 v = ["A","B","C","D"]
 character = {}
@@ -113,6 +116,7 @@ for i in range(0,len(k)):
         character[k[i]] = v[i]
 print(character)
 
+# 문제풀이
 limit = 10000
 i = 1
 sum_value = 0
