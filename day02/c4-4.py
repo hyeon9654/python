@@ -50,3 +50,11 @@ print( ("안녕하세요1\n"),("안녕하세요2") )
 # 방법4] 사이문자열.join( 리스트 ), 리스트 요소 사이마다 특정문자열 삽입
 print( "\n".join(["안녕하세요1","안녕하세요2"]))
 print("-".join("유재석")) # 유-재-석
+
+# 문제풀이 
+output = [ i for i in range(0,101)
+          if "{:b}".format(i).count("0")==1]
+
+for i in output:
+    print("{} : {}".format(i,"{:b}".format(i)))
+print("합계:",sum(output))

@@ -53,3 +53,22 @@ for i in range( 1, 11, 1 ):
     if i == 3:
         continue
     print( i )
+
+# 문제풀이
+max_v = 0
+a = 0
+b = 0
+
+for i in range(100):
+    j = 100 - i
+    # 최댓값 구하기
+    current = i * j
+
+    if current > max_v:
+        max_v = current
+        a = i
+        b = j
+    elif current < max_v:
+        break
+print("최대가 되는 경우: {} * {} = {}".format(a,b,max_v))
+

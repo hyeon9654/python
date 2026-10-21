@@ -138,7 +138,7 @@ print("#우리 동네 애완 동물들")
 for pet in pets:
         print(pet["name"] , str(pet["age"]) + "살")
 
-# 숫자는 무작위로 입력해도 상관없음
+# 문제풀이 # 숫자는 무작위로 입력해도 상관없음
 numbers = [1,2,6,8,4,3,2,1,9,7,2,1,3,5,4,8,9,7,2,3]
 counter = {}
 
@@ -150,6 +150,7 @@ for num in numbers:
 # 최종출력
 print(counter)        
 
+# 문제풀이
 character = {
     "name" : "기사",
     "level" : 12,
@@ -176,6 +177,7 @@ for i in range(0,len(k)):
         character[k[i]] = v[i]
 print(character)
 
+# 문제풀이
 limit = 10000
 i = 1
 sum_value = 0
