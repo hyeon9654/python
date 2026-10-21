@@ -126,3 +126,62 @@ for i in range(i,limit):
                 break
 print("{}를 더할 때 {}을 넘으며 그때의 값은 {}입니다".format(i,limit,sum_value))
 
+
+
+pets = [
+        {"name" : "구름", "age":5},
+        {"name" : "초코", "age":3},
+        {"name" : "아지", "age":1},
+        {"name" : "호랑이", "age":1}
+]
+print("#우리 동네 애완 동물들")
+for pet in pets:
+        print(pet["name"] , str(pet["age"]) + "살")
+
+# 숫자는 무작위로 입력해도 상관없음
+numbers = [1,2,6,8,4,3,2,1,9,7,2,1,3,5,4,8,9,7,2,3]
+counter = {}
+
+for num in numbers:
+        if num in counter:
+                counter[num] += 1
+        else:
+                counter[num] = 1
+# 최종출력
+print(counter)        
+
+character = {
+    "name" : "기사",
+    "level" : 12,
+    "items" : {
+        "sword" : "불꽃의검",
+        "armor" : "풀플레이트"
+    },
+    "skill" : ["베기", "세게 베기", "아주 세게 베기"]
+}
+for key in character:
+    if type(character[key]) is dict:
+            for i in character[key]:
+                    print(i,":",character[key][i])
+    elif type(character[key]) is list:
+            for item in character[key]:
+                    print(key,":",item)
+    else:
+            print(key,":",character[key])
+
+k = ["a","b","c","d"]
+v = ["A","B","C","D"]
+character = {}
+for i in range(0,len(k)):
+        character[k[i]] = v[i]
+print(character)
+
+limit = 10000
+i = 1
+sum_value = 0
+for i in range(i,limit):
+        sum_value += i
+        if sum_value>10000:
+                break
+print("{}를 더할 때 {}을 넘으며 그때의 값은 {}입니다".format(i,limit,sum_value))
+
