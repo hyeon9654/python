@@ -45,18 +45,73 @@ def print_n_times3(value, n = 2):
 print_3_time( "안녕하세요" )        # "안녕하세요""안녕하세요"
 print_3_time( "안녕하세요" , 3)     # "안녕하세요""안녕하세요""안녕하세요"
 
+# p.280
+# 기본 매개변수가 가변 매개변수보다 앞에 올때, 오류
+# 가변 매개변수가 기본 매개변수보다 앞에 올때, 기본 매개변수 인자값 없다.
+# 해결방안 :  키워드 매개변수 
+print( "안녕하세요" )   # 안녕하세요 출력 코드
+print( "안녕하세요", end = "\n" )   # end매개변수는 출력 후 무엇을 할지 # \n 기본값 = 기본매개변수
+print( "안녕하세요", end = "" )   # 키워드매개변수란? 인수 대입 시 매개변수명 지정
 
+def print_n_times4( *values , n = 2 ):
+    # #매개변수 --> 가변매개변수    # 매개변수명 = 기본값 --> 기본매개변수
+    for i in range( n ):
+        for value in values:
+            print( value )
+        print()
+print_n_times4( "안녕하세요", "즐거운", "파이썬", n = 3)    # 인수 전달시 매개변수명 지정 *3반복
+print_n_times4( "안녕하세요", "즐거운", "파이썬", 3 )       # *2반복
 
+# p.285, 리턴 이란? 함수가 종료되면서 반환 되는값
+x = 3
+y = 2
+z = x + y   # 5  / # x + y --> def 내가만든공식() : x + y
+# vs
+def myFunc( x , y ):
+    return x + y
+z = myFunc( x, y )
+# 1] 자료 없는 리턴하기 , java void
+def return_test():
+    print("A 위치 입니다.")
+    return  # 리턴/함수종료/함수끝  # break 반복문탈출/종료
+    print( "B위치 입니다." )
+return_test( )  # B위치는 출력안됨
+# 2] 자료와 함께 리턴하기
+def return_test2( ):
+    return 100              # return 값 생략시 None 반환
+value = return_test2( )
+print(value)
 
+# p.287 예제1, 288 예제2 입력하고 휴식
 
+# 함수를 선언합니다
+def sum_all(start, end):
+    # 변수를 선언합니다.
+    output = 0
+    # 반복문을 돌려 숫자를 더합니다.
+    for i in range( start, end + 1):
+        output+= i
+    # 리턴합니다.
+    return output
+# 함수를 호출합니다
+print( "0 to 100:", sum_all(0,100))
+print( "0 to 1000:", sum_all(0,1000))
+print( "50 to 100:", sum_all(50,100))
+print( "500 to 1000:", sum_all(500,1000))
 
-
-
-
-
-
-
-
+# 함수를 선언합니다
+def sum_all(start=0, end=100, step=1):
+    # 변수를 선언합니다.
+    output = 0
+    # 반복문을 돌려 숫자를 더합니다.
+    for i in range( start, end + 1, step):
+        output+= i
+    # 리턴합니다.
+    return output
+# 함수를 호출합니다
+print( "A", sum_all(0,100,10))
+print( "B", sum_all(end=100))
+print( "C", sum_all(end=100, step=2))
 
 
 
