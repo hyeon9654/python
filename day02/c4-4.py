@@ -52,9 +52,10 @@ print( "\n".join(["안녕하세요1","안녕하세요2"]))
 print("-".join("유재석")) # 유-재-석
 
 # 문제풀이 
-output = [ i for i in range(0,101)
+output = [ i for i in range(1,101)
           if "{:b}".format(i).count("0")==1]
 
 for i in output:
     print("{} : {}".format(i,"{:b}".format(i)))
 print("합계:",sum(output))
+
