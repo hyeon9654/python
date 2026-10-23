@@ -28,30 +28,41 @@ student = [
     Student()
 ]
 
-# 2. 생성자
-class Student:
+# 2. 생성자 / 메소드
+class Student2:
     def __init__(self, name, korean, math, english, science):
         self.name = name
         self.korean = korean
         self.math = math
         self.english = english
         self.science = science
-# 생성자 이용한 인스턴스 생성
+    # def 메소드명( self , 매개변수1 ):
+    def get_sum( self ):
+        return self.korean + self.math + self.english + self.science
+    def get_average( self ):
+        return self.get_sum() / 4
+    def to_string( self ):
+        return "{} \t {} \t {}".format( self.name, self.get_sum(), self.get_average() )
+
+# 일반함수와 메소드 차이? 일반함수는 클래스밖에서 독립선언 / 메소드는 클래스안에서 내부선언
+# 일반함수에서는 self 없고 클래스 메소드는 self 있다.
+def get_sum2() :
+    pass
+# 생성자 이용한 인스턴스 생성, py: 클래스명 ( 인수, 인수, 인수 )
 # JAVA : Student2 s = new Student( "유재석", 10, 20, 30, 40 )
 # 학생 리스트를 선언합니다.
-student = [
-    Student("윤인성",87,98,88,95),
-    Student("연하진",92,98,96,98),
-    Student("구지연",76,96,94,90),
-    Student("나선주",98,92,96,92), 
-    Student("윤아린",95,98,98,98),
-    Student("윤명월",64,88,92,92)
+student2 = [
+    Student2("윤인성",87,98,88,95),
+    Student2("연하진",92,98,96,98),
+    Student2("구지연",76,96,94,90),
+    Student2("나선주",98,92,96,92), 
+    Student2("윤아린",95,98,98,98),
+    Student2("윤명월",64,88,92,92)
 ]
 # Student 인스턴스의 속성에 접근하는 방법
-student[0].name
-student[0].korean
-student[0].math
-student[0].english
-student[0].science
+student2[0].name
+student2[0].korean
+student2[0].math
+student2[0].english
+student2[0].science
 
-# 가비지 컬렉터★
