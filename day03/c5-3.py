@@ -51,7 +51,7 @@ def power( item ) :
     return item * item
 def under_3( item ) : 
     return item < 3 
-list_a = [ 1, 2, 3, 4, 5]
+list_a = [ 1, 2, 3, 4, 5 ]
 output_a = map( power , list_a )  # py map
 print( list( output_a ) )
 # JS map : list_a.map( power )  , list_a.map( x -> return x*x )
@@ -76,4 +76,26 @@ print( list( output_a ) )
 # list_a.map( (item)=>{ return item*item } )
 
 
+numbers = [1,2,3,4,5,6]  
+# map (적용할 함수, 적용할데이터) -> 
+# numbers의 리스트 데이터를 str(문자열)로 적용하겠다. 
+# join() : 여러 문자열을 하나의 문자열로 이어붙이는 메서드, 
+# join에 전달하는 데이터 요소는 모두 문자열이어야 하기에 map을 사용해서 리스트의 요소를 변환한다.
+print("::".join(map(str,numbers)))
 
+
+# filter( 코드 , 리스트 )
+
+numbers = list(range(1,10+1))
+
+print("# 홀수만 추출하기")
+print(list(filter(lambda x:x%2==1 ,numbers)))
+print()
+
+print("# 3 이상, 7 미만 추출하기")
+print(list(filter( lambda x: 3<=x<7 ,numbers)))
+print()
+
+print("# 제곱해서 50미만 추출하기")
+print(list(filter( lambda x:x**2<50 ,numbers)))
+print()

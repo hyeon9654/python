@@ -76,14 +76,15 @@ def 문제(남은사람수,최소사람수):
 
     # 종료 조건
     if key in memo:
-        
+        return memo[key]
     if 남은사람수 < 0:
-        
+        return 0
     if 남은사람수 == 0:
-       
-
+       return 1
     # 재귀 처리
-
+    if 남은사람수 == 0:
+        return
+        
     # 메모화 처리
 
     # 종료
