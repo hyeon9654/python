@@ -83,7 +83,7 @@ print( new_df ) # 부서별 인원수/평균나이/최고령나이
 # 이유: 0~1 범위로 만들기, 서로 다른 속성들의 값 간의 이상치 왜곡 방지
 # 예] 나이: 0~150 / 연봉: 0~3,000,000,000,000
 
-# 원-핫인코딩: pd.get_dummies( df, columns=['컬럼명'], dtype=int)
+# 원-핫 인코딩: pd.get_dummies( df, columns=['컬럼명'], dtype=int)
 # 이유: 범주(문자) 이해할 수 있는 이진(0/1)로 변환, 0/1
 # 예] 개발부=0, 정보보호부=1
 new_df = pd.get_dummies( df, columns=['부서'], dtype=int)
