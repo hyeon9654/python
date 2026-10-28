@@ -54,29 +54,34 @@ print(조건에맞는위험고객)
 print(총대상고객)
 #
 
-# [Step 5] 고객 등급 정규화 및 VVIP 선정 (Min-Max Normalization)
+# [Step 5] 고객 등급 정규화 및 VVIP 선정
 # - 구매 금액(`sales`) 데이터를 0과 1 사이의 값으로 정규화(Min-Max Scaling) 하세요. * 공식 : ( x - 최솟값 ) / ( 최댓값 - 최솟값 )
-정규화 = (sales - np.min(sales)) / (np.max(sales) - np.min(sales))
+정규화 = (sales - np.min( sales ) / np.max( sales ) - np.min( sales ))
+print( 정규화 )
 # - 정규화된 값이 0.9 이상(상위 10% 수준)인 고객을 'VVIP'로 정의하고, 해당 VVIP 고객들의 모든 정보(Row 전체)를 추출하여 출력하세요.
-print(정규화 >= 0.9)
-print(data[정규화 >= 0.9 ])
-VIP = data[정규화 >= 0.9]
-# -- 추출된 VVIP 고객 데이터를 '구매 금액(4번 열)' 기준 내림차순(높은 금액 순)으로 정렬하여 상위 5명의 정보를 출력하세요.
-정렬결과 = np.argsort(VIP[ : , 4][::-1])
-print(정렬결과)
-print(VIP[정렬결과])
-vvip=VIP[정렬결과]
-print(vvip[:5])
+print( 정규화 >= 0.9 )
+print( data[ 정규화 >= 0.9 ] )
+VIP = data[ 정규화 >= 0.9 ]
+# - 추출된 VVIP 고객 데이터를 '구매 금액(4번 열)' 기준 내림차순(높은 금액 순)으로 정렬하여 상위 5명의 정보를 출력하세요.
+# np.argsort( VIP[ : , 4 ] ) # 정렬된 순번(인덱스) 반환  # 오름차순 
+정렬결과 = np.argsort( VIP[ : , 4 ][::-1] ) # 정렬된 순번 반환  # 내림차순 # [ : : -1 ] 역순 
+print( 정렬결과 ) # 10 5 7 -->  1 2 0
+print( VIP[ 정렬결과 ] ) 
+vvip = VIP[ 정렬결과 ]  # [ [ 1,2,0 ] ]
+print( vvip[ : 5 ])
 # ==============================================================================
-x = np.array( [[1,2,3],[4,5,6]] )
-print(x[[2,3]])
-print( x[0] )   # 0행     # [1 2 3]
-print( x[0,1] ) # 0행 1열 # 2
-print( x[0,1 : ] )  # [2 3]
-print( x[ :,2] )    # [3 6]
-y = x[0,1]
-y = 10
-print(x)
-y2 = x[:,2]
+x = np.array( [[1,2,3],[4,5,6]])
+print( x + 3 ) # 요소마다 +3  # [[4,5,6],[7,8,9]]
+print( (x + 3) >= 6 ) # [[False False  True] [ True  True  True]]
+print( x[ (x+3) >= 6 ] ) # [3 4 5 6] # 원본에서 특정 조건의 True 요소값 추출 
+
+print( x[ 0 ] ) # 0행           # [1 2 3]
+print( x[ 0 , 1 ]) # 0행 1열    # 2 
+print( x[ 0 , 1  : ])           # [2 3]
+print( x[ : , 2] )              # [3 6]
+y = x[ 0 , 1 ]
+y = 10 
+print( x )
+y2 = x[ : , 2 ]
 y2[0] = 10
-print(x)
+print( x )
