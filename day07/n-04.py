@@ -15,3 +15,5 @@ print( np.argmin( y ), np.argmax( y ) )
 print( np.sum( y, axis=0 ), np.mean( y, axis=0 ) , np.median( y, axis=1 ))
 print( np.var( x ), np.std( x ), np.sqrt( x ) )
 
+
+
