@@ -17,7 +17,11 @@
 # 전문가 평점은 '전문가'라고 표시된 .star_wrap 내부에서 추출
 # 4. 클릭이벤트 : dom.click() ,  .pagination .page a
 # 영화 평점 목록인 #point_list_holder 내부에서만 요소를 찾음
-
+import asyncio
+from playwright.async_api import async_playwright
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 # 1] 라이브러리 호출
 import asyncio  # 비동기 라이브러리
 from playwright.async_api import async_playwright   # 브라우저 자동화 라이브러리

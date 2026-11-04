@@ -29,7 +29,7 @@ X_train,X_test,Y_train,Y_test = train_test_split( X, Y, test_size=0.2, random_st
 
 # 5) 단순(특성값 1개) 선형회귀 모델
 from sklearn.linear_model import LinearRegression
-model = LinearRegression( ) # 파이썬에서 객체생성 방법, 변수명 = 클래스먕()
+model = LinearRegression( ) # 파이썬에서 객체생성 방법, 변수명 = 클래스명()
 # 6) 모델 학습, model.fit( 특성자료, 타깃자료 )
 model.fit( X_train, Y_train )
 
