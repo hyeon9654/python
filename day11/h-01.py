@@ -8,7 +8,7 @@ import httpx
 import pandas as pd
 
 # 0] 공공데이터포털 본인 인증기
-service_key = "7540ef37d4d62e8aa1ccaf9c61bc9095638232be0930450a4a0d128c78e9e7d6"
+service_key = 
 
 # 1] 공공데이터에 json 형식의 자료요청
 def test1() :
