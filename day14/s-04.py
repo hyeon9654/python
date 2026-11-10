@@ -29,14 +29,14 @@ from sklearn.pipeline import Pipeline
 # pipe_model = Pipeline([("식별자", 클래스명())])  # 파이썬 인스턴스생성, 변수 = 클래스명( 인자값 )
 # [] 리스트 () 튜플
 pipe_model = Pipeline( [
-    ('poly', PolynomialFeatures( degree=2, include_bias=False)) # 4
-    ('scaler', StandardScaler( ))                               # 5
+    ('poly', PolynomialFeatures( degree=2, include_bias=False)), # 4
+    ('scaler', StandardScaler( )),                               # 5
     ('regressor', LinearRegression( ))                          # 6
 ])
 # 9) 파이프라인으로 학습
 pipe_model.fit(X_train, Y_train)
-print( 'r2 : ',pipe_model.score( X_train_scaled , Y_train ) )
-print( 'r2 : ',pipe_model.score( X_test_scaled , Y_test ) )
+print( 'r2 : ',pipe_model.score( X_train , Y_train ) )
+print( 'r2 : ',pipe_model.score( X_test, Y_test ) )
 
 from sklearn.linear_model import Ridge
 
@@ -44,14 +44,14 @@ from sklearn.linear_model import Ridge
 # degree=2, alpha=0.01
 # 1. 파이프라인 만들기
 pipe_model = Pipeline( [
-    ('poly', PolynomialFeatures(include_bias=False))    # degree 튜닝
-    ('scaler', StandardScaler( ))                               
+    ('poly', PolynomialFeatures(include_bias=False)),    # degree 튜닝
+    ('scaler', StandardScaler( )),           
     ('ridge', Ridge( )) # alpha 튜닝
 ])
-# 2. 후보군 파라미터 만들기, {'식별자'_파라미터명': [후보값, 후보값]}
+# 2. 후보군 파라미터 만들기, {'식별자'__파라미터명': [후보값, 후보값]}
 param_grid = { 
-    'poly_degree': [2, 3], 
-    'ridge_alpha': [0.001, 0.01, 0.1, 10, 100]
+    'poly__degree': [2, 3], 
+    'ridge__alpha': [0.001, 0.01, 0.1, 10, 100]
 }
 # 3. k-fold 교차 검증
 # KFold(n_splits= k개의 동일한 폴드로 분할, shuffle=분할시 무작위 섞기, random_state=42)
@@ -60,10 +60,28 @@ kf = KFold( n_splits=5, shuffle=True, random_state=42)
 
 # 4. 그리드서치CV: 교차검증과 다양한 파라미터 자동으로 실행하고 최적 찾기
 # GridSearchCV(estimator=진행할모델/파이프라인, param_grid={파라미터후보군},scoring=평가지표명)
-grid = GridSearchCV()(
+grid = GridSearchCV(
     estimator=pipe_model,
     param_grid = param_grid,
     scoring='r2',
     cv=kf, 
-    n_job=-1
+    n_jobs=-1
 )
+# 5. 그리드서치로 학습
+grid.fit(X_train, Y_train)
+# 6. 주요 속성
+best_model = grid.best_estimator_   # 가장 성능 좋은 모델 반환
+print(grid.best_params_)            # 가장 성능 좋은 파라미터 조합 반환
+print(grid.best_score_)             # 교차 검증에서 평균 점수 반환
+# 7. 최적 모델로 평가
+print( 'r2 : ',best_model.score( X_train , Y_train ) )
+print( 'r2 : ',best_model.score( X_test , Y_test ) )
+
+# 11) 서빙, 학습된 모델 저장하고 다른곳에서 호출
+# 연구/학습: 코랩(고사양CPU)에서 학습 --> 실제 서버(FAST API)에서 호출
+import joblib
+# 1) 모델 저장한다
+# joblib.dump( 저장할모델, 경로.pkl)
+joblib.dump( best_model, './day14/fish_model.pkl')
+
+# 2. 다른 파이썬파일에서 저장된 모델 불러오기. s-05.py
