@@ -39,3 +39,4 @@ print( model.predict_proba( X_test_scaled[ :3 ]) ) # 확률 반환
 from sklearn.metrics import accuracy_score
 acc = accuracy_score( Y_test, Y_pred )
 print(acc) # 1.0 => 100% 현재 실습 데이터가 적다.
+
