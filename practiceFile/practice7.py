@@ -55,13 +55,14 @@ async def 실습7() :
             # 1페이지는 처음 접속했을 때 표시되므로 2페이지부터 해당 번호를 클릭
             if i > 1 :
                 # 영화 목록을 가져오는 응답을 기다림
-                async with 페이지.expect_response(
-                    "https://cine21.com/movie/point/list_items"
-                ) as 응답정보 :
-                    await 페이지버튼리스트.get_by_text( str( i ), exact=True ).click()
+                # 영화 목록 요청이 완전히 끝날 때까지 기다림
+                async with 페이지.expect_request_finished(
+                    lambda 요청: "/movie/point/list_items" in 요청.url) as 요청정보:
+                    await 페이지버튼리스트.get_by_text(
+                        str(i), exact=True
+                    ).click()
 
-                응답 = await 응답정보.value
-                await 응답.finished()
+                await 요청정보.value
 
                 # 응답을 받은 뒤 화면에도 해당 페이지 번호가 반영됐는지 확인
                 await 페이지.wait_for_function(
@@ -115,7 +116,7 @@ asyncio.run( 실습7() )
 
 # [2. 데이터 수집 요구사항]
 # 2-1 (페이지 순회): 1페이지부터 3페이지까지 반복문을 통해 동적으로 페이지를 이동한다.
-# 2-2 (요소 추출): 각 영화 카드 내부에서 아래 3가지 요소를 각각 수집한다.
+# 2-2 (요소 추출): 각 영화 카드 내부에서 아래 3가지 요소를 각각 수집한다
 # 영화 제목 # 이미지 # 전문가 평점
 
 # 2-3 (데이터 적재): 수집된 데이터를 딕셔너리로 묶어 리스트에 저장하고 최종 출력한다.
