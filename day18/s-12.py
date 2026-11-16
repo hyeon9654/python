@@ -1,11 +1,12 @@
 ## lightGBM 튜닝 / 서빙 예제 필요한 데이터셋 
+
 import pandas as pd
 url = 'https://raw.githubusercontent.com/rashida048/Datasets/master/USA_cars_datasets.csv'
 df = pd.read_csv(url)
 # *만약에 모델의 성능 향상 하기 위한 도메인 지식의 (계산식)특성 추가 좋다.*
 df = df[df['price'] > 0]
-num_cols = ['year', 'mileage']                                      # 수치형 
-cat_cols = ['brand', 'model', 'title_status', 'color', 'state']     # 범주형 
+num_cols = ['year', 'mileage']                                  # 수치형 
+cat_cols = ['brand', 'model', 'title_status', 'color', 'state'] # 범주형 
 # 범주형 자료들을 원핫인코딩이 아닌 판다스'카테고리' 타입 변경 # lightGBM 내장 원핫인코딩 사용 목적
 for col in cat_cols: 
     df[col] = df[col].astype('category') 
@@ -71,3 +72,33 @@ study.optimize( objective , n_trials=20 ) # -> 반복 수 만큼 목적함수 �
 print( '최적 하이퍼파라미터:', study.best_params )
 optimal_model = study.best_trial.user_attrs['best_n_estimators']
 print( '최적 트리: ', optimal_model )
+# 최적 하이퍼파라미터: {'learning_rate': 0.0655020265678206, 'num_leaves': 16, 'max_depth': 6, 'min_child_samples': 50, 'subsample': 0.9989859135407586, 'colsample_bytree': 0.9939374085734083}
+# 최적 트리:  174
+
+# 6) 최적 파라미터로 모델 학습
+final_model = LGBMRegressor(
+    random_state=42, verbose=-1, n_jobs=-1,
+    **study.best_params, # 최적 파라미터 호함 # **리스트 **딕셔너리 **전개연산자
+    n_estimators=optimal_model
+)
+final_model.fit( X_train, Y_train )
+print('train r2:', final_model.score(X_train,Y_train))
+print('test r2:', final_model.score(X_test,Y_test))
+print(final_model.feature_name_)
+print(final_model.feature_importances_)
+
+# 7) joblib 저장 / 로드
+import joblib
+joblib.dump( final_model, '/day18/gbm_model.pkl') # 1)
+model = joblib.load('./day18/gbm_model.pkl')    # 다른 .py 파일 또는 메소드 가정
+# 8) 예측
+new_cars = pd.DataFrame([
+    {'year': 2019, 'mileage': 25000, 'brand': 'ford',   'model': 'f-150',  'title_status': 'clean vehicle',     'color': 'white', 'state': 'texas'},
+    {'year': 2014, 'mileage': 85000, 'brand': 'nissan', 'model': 'altima', 'title_status': 'salvage insurance', 'color': 'black', 'state': 'california'}
+])
+for col in cat_cols:
+    new_cars[col] = new_cars[col].astype('category')
+###
+preds = model.predict( new_cars )
+print('서빙 모델 예측 (1번차량) 가격:', preds[0])
+print('서빙 모델 예측 (2번차랑) 가격:', preds[1])
